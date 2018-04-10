@@ -44,11 +44,13 @@ let mainState = {
 			scoreText = game.add.text(0,500,'Score:',{font: '32px Arial', fill: '#fff'});
 			winText = game.add.text(game.world.centerX,game.world.centerY, 'You Win!', {font:'32px Arial', fill:'#fff'});
 			winText.visible = false;
-
+			looseText = game.add.text(game.world.centerX,game.world.centerY, 'You Lose!', {font:'32px Arial', fill:'#FF0000'});
+			looseText.visible = false;
 	},
 	update: () => {
 
 		game.physics.arcade.overlap(bullets,enemies,collisionHandler,null,this);
+		game.physics.arcade.overlap(enemies,player,collision,null,this);
 
 		player.body.velocity.x = 0;
 
@@ -106,6 +108,11 @@ function collisionHandler(bullet, enemy){
 	bullet.kill();
 	enemy.kill();
 	score += 100;
+}
+
+function collision(player, enemy){
+	player.kill();
+	looseText.visible = true;
 }
 	
 game.state.add('mainState', mainState);
