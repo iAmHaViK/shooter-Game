@@ -42,9 +42,9 @@ let mainState = {
 			createEnemies();
 
 			scoreText = game.add.text(0,500,'Score:',{font: '32px Arial', fill: '#fff'});
-			winText = game.add.text(game.world.centerX,game.world.centerY, 'You Win!', {font:'32px Arial', fill:'#fff'});
+			winText = game.add.text(game.world.centerX -120,game.world.centerY, 'You Win!', {font:'60px Arial', fill:'#fff'});
 			winText.visible = false;
-			looseText = game.add.text(game.world.centerX,game.world.centerY, 'You Lose!', {font:'32px Arial', fill:'#FF0000'});
+			looseText = game.add.text(game.world.centerX -120,game.world.centerY, 'You Lose!', {font:'60px Arial', fill:'#FF0000'});
 			looseText.visible = false;
 	},
 	update: () => {
@@ -111,6 +111,7 @@ function collisionHandler(bullet, enemy){
 }
 
 function collision(player, enemy){
+	enemies.kill();
 	player.kill();
 	looseText.visible = true;
 }
